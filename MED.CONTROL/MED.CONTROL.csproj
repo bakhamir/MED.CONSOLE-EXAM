@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="interfaces\IRepos.cs" />
-    <Compile Include="Objects\OrgRepos.cs" />
     <Compile Include="Objects\patientRepos.cs" />
     <Compile Include="Objects\requestRepo.cs" />
     <Compile Include="Objects\userRepos.cs" />
