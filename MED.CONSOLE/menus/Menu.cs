@@ -65,9 +65,10 @@ namespace MED.CONSOLE
             Console.WriteLine("1 - внести нового пациента");
             Console.WriteLine("2 - поиск среди пациентов");
             Console.WriteLine("3 - просмотреть всех пациентов");
-            Console.WriteLine("4 - просмотреть запросы на связку (требуются права администратора)");
-            Console.WriteLine("5 - просмотреть связанных пациентов ");
+            Console.WriteLine("4 - просмотреть запросы на связку (требуются права администратора для полного просмотра)");
+            Console.WriteLine("5 - просмотреть связанных пациентов (требуются права администратора для полного просмотра)");
             Console.WriteLine("6 - выход");
+            Console.WriteLine($"ВАШ УРОВЕНЬ ДОСТУПА - {user.rights}");
 
             int choice = Int32.Parse(Console.ReadLine());
             switch (choice)
