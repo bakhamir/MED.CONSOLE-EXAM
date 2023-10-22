@@ -67,7 +67,7 @@ namespace MED.CONSOLE
             Console.WriteLine("3 - просмотреть всех пациентов");
             Console.WriteLine("4 - просмотреть запросы на связку (требуются права администратора)");
             Console.WriteLine("5 - просмотреть связанных пациентов ");
-            Console.WriteLine("4 - выход");
+            Console.WriteLine("6 - выход");
 
             int choice = Int32.Parse(Console.ReadLine());
             switch (choice)
@@ -118,11 +118,26 @@ namespace MED.CONSOLE
                 case 4:
                     {
                         Console.Clear();
+                        menuAction.ShowRequests(user);
+                        Console.WriteLine("Рассмотреть запросы?");
+                        menuAction.acceptRequests();
+
+
+
+                        Console.ReadKey();
+                        Console.Clear();
+                        MenuSecond(user);
+
                         break;
                     }
                 case 5:
                     {
                         Console.Clear();
+
+                        menuAction.finishedRequests(user);
+                        Console.ReadKey();
+                        Console.Clear();
+                        MenuSecond(user);
                         break;
                     }
                 case 6:

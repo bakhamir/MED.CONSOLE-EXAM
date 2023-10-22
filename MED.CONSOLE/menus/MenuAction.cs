@@ -90,7 +90,7 @@ namespace MED.CONSOLE.menus
 
             return repo.FindPatients(FullName, IIN);
         }
-        public UserRequests CreateRequest(User user, Patient patient)
+        public void CreateRequest(User user, Patient patient)
         {
             requestRepo repo = new requestRepo(path);
 
@@ -103,7 +103,10 @@ namespace MED.CONSOLE.menus
                         if(user.rights != "admin")
                         {
                             UserRequests request = new UserRequests(user.organisation, patient);
+
                             request.status = "pending";
+                            request.CreationDate = DateTime.Now;
+
                             repo.CreateRequest(request);
                         }
                         else
@@ -111,9 +114,14 @@ namespace MED.CONSOLE.menus
                             Organisation organisation= new Organisation();
                             Console.WriteLine("ВВЕДИТЕ ИМЯ ОРГАНИЗАЦИИ");
                             organisation.Name = Console.ReadLine();
+
                             UserRequests request = new UserRequests(organisation, patient);
+
                             request.status = "pending";
+                            request.CreationDate = DateTime.Now;
+
                             repo.CreateRequest(request);
+                            Console.WriteLine("Запрос создан!");
                         }
                         break;
                     }
@@ -123,7 +131,59 @@ namespace MED.CONSOLE.menus
                         break;
                     }
             }
-            return null;
+        }
+        public void ShowRequests(User user)
+        {
+            requestRepo repo = new requestRepo(path);
+            if (user.rights != "admin")
+            {
+                repo.ShowRequestsUser(user.organisation.Name);
+            }
+            else if (user.rights == "admin")
+            {
+                repo.ShowRequests();
+            }
+
+        }
+        public void acceptRequests()
+        {
+            requestRepo repo = new requestRepo(path);
+            Console.WriteLine("y/n?");
+            char choice = Convert.ToChar(Console.ReadLine());
+            switch (choice)
+            {
+                case 'y':
+                    {
+
+                        Console.WriteLine("Имя организации желаемого запроса:");
+                        string OrgName = Console.ReadLine();
+                        Console.WriteLine("Имя пациента желаемого запроса");
+                        string PatName = Console.ReadLine();
+
+                        Console.WriteLine("Новый статус запроса:");
+                        string newStatus = Console.ReadLine();
+
+                        repo.ViewRequests(newStatus, OrgName, PatName);
+                        break;
+                    }
+                case 'n':
+                    {
+                        Console.WriteLine("возвращаемся в меню...");
+                        break;
+                    }
+            }
+        }
+        public void finishedRequests(User user)
+        {
+            requestRepo repo = new requestRepo(path);
+            if (user.rights == "admin")
+            {
+                repo.finishedRequests();
+            }
+            else
+            {
+                repo.finishedRequestsUser(user);
+            }
         }
     }
 }
