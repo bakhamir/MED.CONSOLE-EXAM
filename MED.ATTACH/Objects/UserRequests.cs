@@ -11,6 +11,7 @@ namespace MED.ATTACH.Objects
     {
         public ObjectId Id { get; set; }
         public DateTime CreationDate { get; set; }
+        public DateTime ApprovalDate { get; set; }
         public Patient Patient { get; set; }
         public string status { get; set; }
 
@@ -23,4 +24,5 @@ namespace MED.ATTACH.Objects
             this.status = "unwatched";
         }
     }
+
 }

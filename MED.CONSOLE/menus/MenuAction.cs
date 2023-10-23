@@ -18,8 +18,13 @@ namespace MED.CONSOLE.menus
         public MenuAction()
         {
             path = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-        }
 
+        }
+        public void GarbageClear()
+        {
+            requestRepo repo = new requestRepo(path);
+            repo.GarbageDeleter();
+        }
         public bool RegisterUser()
         {
             User user = new User();
@@ -50,15 +55,9 @@ namespace MED.CONSOLE.menus
 
             Console.WriteLine("PASSWORD");
             string password = Console.ReadLine();
-            try
-            {
-                return repo.AuthUser(login, password);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            return null;
+            return repo.AuthUser(login, password);
+
+
         }
         public bool AddPatient()
         {
@@ -135,14 +134,7 @@ namespace MED.CONSOLE.menus
         public void ShowRequests(User user)
         {
             requestRepo repo = new requestRepo(path);
-            if (user.rights != "admin")
-            {
-                repo.ShowRequestsUser(user.organisation.Name);
-            }
-            else if (user.rights == "admin")
-            {
-                repo.ShowRequests();
-            }
+            repo.ShowRequestsPending(user);
 
         }
         public void acceptRequests()
@@ -161,6 +153,7 @@ namespace MED.CONSOLE.menus
                         string PatName = Console.ReadLine();
 
                         Console.WriteLine("Новый статус запроса:");
+                        Console.WriteLine("accepted//declined");
                         string newStatus = Console.ReadLine();
 
                         repo.ViewRequests(newStatus, OrgName, PatName);
@@ -176,14 +169,7 @@ namespace MED.CONSOLE.menus
         public void finishedRequests(User user)
         {
             requestRepo repo = new requestRepo(path);
-            if (user.rights == "admin")
-            {
-                repo.finishedRequests();
-            }
-            else
-            {
-                repo.finishedRequestsUser(user);
-            }
+            repo.finishedRequests(user);
         }
     }
 }

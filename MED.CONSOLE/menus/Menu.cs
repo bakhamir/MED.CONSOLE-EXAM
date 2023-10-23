@@ -59,7 +59,6 @@ namespace MED.CONSOLE
         public static void MenuSecond(User user)
         {
             MenuAction menuAction = new MenuAction();
-
             Console.Clear();
             Console.WriteLine($"Добро пожаловать {user.login}!");
             Console.WriteLine("1 - внести нового пациента");
@@ -69,7 +68,7 @@ namespace MED.CONSOLE
             Console.WriteLine("5 - просмотреть связанных пациентов (требуются права администратора для полного просмотра)");
             Console.WriteLine("6 - выход");
             Console.WriteLine($"ВАШ УРОВЕНЬ ДОСТУПА - {user.rights}");
-
+            //menuAction.GetHashCode();
             int choice = Int32.Parse(Console.ReadLine());
             switch (choice)
             {
@@ -107,7 +106,7 @@ namespace MED.CONSOLE
                         break;
                     }
                     case 3: { 
-                    Console.Clear();
+                        Console.Clear();
                         menuAction.ShowPatients();
 
                         Console.ReadKey();
@@ -118,11 +117,14 @@ namespace MED.CONSOLE
                     }
                 case 4:
                     {
+
+
                         Console.Clear();
                         menuAction.ShowRequests(user);
+
                         Console.WriteLine("Рассмотреть запросы?");
                         menuAction.acceptRequests();
-
+                        menuAction.GarbageClear();
 
 
                         Console.ReadKey();
