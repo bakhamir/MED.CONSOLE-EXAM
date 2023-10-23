@@ -15,11 +15,14 @@ namespace MED.CONSOLE
             MenuAction menuAction = new MenuAction();
 
             Console.WriteLine("Добро пожаловать в медицинский центр!");
+            Console.WriteLine("--------------------------------------");
             Console.WriteLine("1 - авторизация");
             Console.WriteLine("2 - регистрация");
             Console.WriteLine("3 - выход");
+            Console.WriteLine("--------------------------------------");
             int choice = Int32.Parse(Console.ReadLine());
-            switch(choice)
+
+            switch (choice)
             {
                 case 1: 
                     { 
@@ -61,12 +64,14 @@ namespace MED.CONSOLE
             MenuAction menuAction = new MenuAction();
             Console.Clear();
             Console.WriteLine($"Добро пожаловать {user.login}!");
+            Console.WriteLine("--------------------------------------");
             Console.WriteLine("1 - внести нового пациента");
             Console.WriteLine("2 - поиск среди пациентов");
             Console.WriteLine("3 - просмотреть всех пациентов");
             Console.WriteLine("4 - просмотреть запросы на связку (требуются права администратора для полного просмотра)");
             Console.WriteLine("5 - просмотреть связанных пациентов (требуются права администратора для полного просмотра)");
             Console.WriteLine("6 - выход");
+            Console.WriteLine("--------------------------------------");
             Console.WriteLine($"ВАШ УРОВЕНЬ ДОСТУПА - {user.rights}");
             //menuAction.GetHashCode();
             int choice = Int32.Parse(Console.ReadLine());

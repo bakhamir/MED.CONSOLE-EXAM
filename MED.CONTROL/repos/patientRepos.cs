@@ -44,7 +44,7 @@ namespace MED.CONTROL.Objects
                     List<Patient> patientslist = patients.FindAll().ToList();
                     foreach (var patient in patientslist)
                     {
-                        Console.WriteLine($"{patient.FullName} {patient.IIN}\t");
+                        Console.WriteLine($"Полное имя - {patient.FullName} ИИН - {patient.IIN}\t");
                     }
                 }
             }

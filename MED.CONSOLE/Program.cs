@@ -11,10 +11,8 @@ namespace MED.CONSOLE
         static void Main(string[] args)
         {
             Menu.MenuFirst();
-
+            //ссылка на БД в App.config
             Console.ReadKey();
-            //путь к БД в App.config
-
         }
     }
 }
